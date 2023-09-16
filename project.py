@@ -65,43 +65,48 @@ class Counter(Phitron):
             print("Invalid input. Please enter a valid Bus No (an integer).")
             return  # Exit the method if the input is not a valid integer
 
-        for bus in self.total_bus_list:
-            if bus_no == bus.coach:
+        for w in self.total_bus_list:
+            if bus_no == w['coach']:
                 passenger = input("Enter Your Name: ")
                 seat_no = int(input("Enter Seat No: "))
 
                 if seat_no > 20:
                     print("No Seat Available....!!! ")
 
-                elif bus.seat[seat_no - 1] != "Empty":
+                elif w['seat'][seat_no - 1] != "Empty":
                     print("Seat Already Booked....!!! ")
 
                 else:
-                    bus.seat[seat_no - 1] = passenger
+                    w['seat'][seat_no - 1] = passenger
+            else:
+                print("No Bus Available...!!!")
         for bus in self.total_bus_list:
-            print(bus.seat)
+            print(bus['seat'])
     
     def show_ticket(self):
         bus_no = int(input("Enter Bus Number: "))
 
         for w in self.total_bus_list:
-            if bus_no == w['coach']:
+            if bus_no == w.coach:  # Use dot notation to access class attributes
                 print("*" * 50)
                 print()
-                print(f"{'*' * 10}{'#' * 10} BUS INFO {'#' * 10}")
-                print(f" Bus Number: {w.coach}\t\t\t Driver: {w.driver}")
-                print(f" Arrival: {w.arrival}\t\t\t Departure: {w.departure}")
-                print(f" From: {w.from_destination}\t\t\tTo: {w.to}")
-                print()
-                print("*" * 50)
+                print(f"{' '*10}{'#'*10} BUS INFO {'#'*10}")
+                print(f" Bus Number: {bus_no}\t\t\t Driver: {w.driver}")
+                print(f"Arrival: {w.arrival}\t\t\tDeparture Time: {w.departure}\nFrom: {w.from_destination}\t\t\tto: {w.to}")
+
                 
-            a = 1
-            for i in range(5):
-                for j in range(2):
-                    print(f'{a}.{w.seat[a-1]}', end="\t")
-                    a += 1
-                    print()  # Add a newline after each row
-                print("*"*50)
+                print()
+
+        a = 1
+        for i in range(5):
+            for j in range(2):
+               print(f'{a}.{w.seat[a-1]}', end="\t")
+               a += 1
+            for j in range(2):
+                print(f"{a}. {w.seat[a-1]}", end="\t")
+                a += 1
+            print()  # Add a newline after each row
+            print("*" * 50)
 
 # Create an instance of the Bus class to use it as a base class for Counter
 company = Phitron()
