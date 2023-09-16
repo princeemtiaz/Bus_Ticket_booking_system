@@ -80,13 +80,35 @@ class Counter(Phitron):
                     bus.seat[seat_no - 1] = passenger
         for bus in self.total_bus_list:
             print(bus.seat)
+    
+    def show_ticket(self):
+        bus_no = int(input("Enter Bus Number: "))
+
+        for w in self.total_bus_list:
+            if bus_no == w['coach']:
+                print("*" * 50)
+                print()
+                print(f"{'*' * 10}{'#' * 10} BUS INFO {'#' * 10}")
+                print(f" Bus Number: {w.coach}\t\t\t Driver: {w.driver}")
+                print(f" Arrival: {w.arrival}\t\t\t Departure: {w.departure}")
+                print(f" From: {w.from_destination}\t\t\tTo: {w.to}")
+                print()
+                print("*" * 50)
+                
+            a = 1
+            for i in range(5):
+                for j in range(2):
+                    print(f'{a}.{w.seat[a-1]}', end="\t")
+                    a += 1
+                    print()  # Add a newline after each row
+                print("*"*50)
 
 # Create an instance of the Bus class to use it as a base class for Counter
 company = Phitron()
 company.add_bus()
 
 doremmon = Counter()
-doremmon.reservation()
+doremmon.show_ticket()
 
 
 
