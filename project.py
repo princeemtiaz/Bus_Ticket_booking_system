@@ -58,6 +58,7 @@ class Phitron:
 # company.add_bus()
             
 class Counter(Phitron):
+    user_list=[]     #user list nilam
     def reservation(self):
         try:
             bus_no = int(input("Enter Bus No: "))
@@ -107,14 +108,122 @@ class Counter(Phitron):
                 a += 1
             print()  # Add a newline after each row
             print("*" * 50)
+            
+            
+    def get_users(self):
+        return self.user_list
+            
+    def create_account(self):
+        name=input("Enter your User name: ")
+        password=input("Enter your Password: ")
+        self.new_user=User(name,password)
+        self.user_list.append(vars(self.new_user))
+        
+    def avaiable_buses(self):
+        if len(self.total_bus_list)==0:
+            print("No BUses Available\n")
+        else :
+            print('*'*50)
+            for bus in self.total_bus_list:
+                print()
+                print(f"{' '*10} BUS {bus['coach']} INFO {'#'*10}")
+                print(f"Bus Number : {bus['coach']}\t Driver : {bus['driver']}")
+                print(f"Arrival : {bus['arrival']} \t Departure Time : {bus['departure']} \n From: \t{bus['from_destination']}\t\t To : \t{bus['to']}")   
+                
+                print("*"*50)   
+                 
+                 
+# Create a single instance of the Phitron class
+company = Phitron()
+
+while True:
+    print("1. Create an account\n2. Login to your account\n3. EXIT")
+    
+    user_input = int(input("Enter Your Choice: "))
+    
+    if user_input == 3:
+        break
+    elif user_input == 1:
+        username = input("Enter Your Username: ")
+        password = input("Enter Your Password: ")
+        company.create_account(username, password)
+    elif user_input == 2:
+        name = input("Enter Your Username: ")
+        password = input("Enter Your Password: ")
+        
+        flag = 0
+        isAdmin = False
+        
+        if name == "admin" and password == "123":
+            isAdmin = True
+        if isAdmin is False:
+            for user in company.get_users():
+                if user['username'] == name and user['password'] == password:
+                    flag = 1
+                    break
+            if flag:
+                while True:
+                    print(f"\n{' '*10} Welcome to BUS TICKET BOOKING SYSTEM")
+                    print("1. Available Buses\n2. Show Bus Info\n3. Reservation\n4. EXIT")
+                
+                    a = int(input("Enter Your Choice: "))
+                    if a == 4:
+                        break
+                    elif a == 1:
+                        company.available_buses()
+                    elif a == 2:
+                        company.show_ticket()
+                    elif a == 3:
+                        company.reservation()
+            else:
+                print("No Username Found")
+        else:
+            while True:
+                print(f"\n{' '*10} Welcome to BUS TICKET BOOKING SYSTEM")
+                print("1. Add Bus\n2. Available Buses\n3. Show Bus Info\n4. Reservation\n5. EXIT")
+                
+                a = int(input("Enter Your Choice: "))
+                
+                if a == 5:
+                    break
+                elif a == 1:
+                    company.add_bus()
+                elif a == 2:
+                    company.available_buses()
+                elif a == 3:
+                    company.show_ticket()
+
+                    
+                
+            
+            
+            
+        
 
 # Create an instance of the Bus class to use it as a base class for Counter
-company = Phitron()
-company.add_bus()
+# company = Phitron()
+# company.add_bus()
 
-doremmon = Counter()
-doremmon.show_ticket()
+# doremmon = Counter()
+# doremmon.show_ticket()
 
+
+# Global 
+#     1.create An Account
+#     2. Login to YOur Account
+#     3.exit
+      
+    #   User
+    #     1. Bus info
+    #     2.Reserver/ticket booking
+    #     3. avaible buses
+    #     4.exit
+    
+#     Admin :
+#         1.Add Bus
+#         2.Available Buses
+#         3.Can check bus info
+#         4. Exit
 
 
 
