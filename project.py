@@ -30,30 +30,32 @@ class Bus:
 # print(b)
 
 class Phitron:
-    total_bus=5
-    total_bus_list=[]
-    
-    flag=1
+    total_bus = 5
+    total_bus_list = []
+
     def add_bus(self):
-        bus_no=int(input("Enter Bus No: "))
+        bus_no = int(input("Enter Bus No: "))
         
-        for w in self.total_bus_list:
-            if bus_no ==w['coach'] :
-                print('Bus is Alreay Added ')
-                flag=0
+        flag = True  # Initialize flag as True
+
+        for bus in self.total_bus_list:
+            if bus_no == bus.coach:
+                print('Bus is Already Added')
+                flag = False  # Set flag to False if bus is already added
                 break
-            
-        
-        if flag :
-            bus_driver=input("Enter bus Driver Name : ")
-            bus_arrival=input("Bus Arraival Time: ")
-            bus_departure=input("Enter Bus departure time: ")
-            from_destination=input("Enter Bus start From: ")
-            bus_to=input("Enter Bus Destination : ")
-            self.new_bus=Bus(bus_no,bus_driver,bus_arrival,bus_departure,from_destination,bus_to)
-            self.total_bus_list.append(vars(self.new_bus))
-            print("\n Bus Added Successfully ")
-            
+
+        if flag:
+            bus_driver = input("Enter bus Driver Name: ")
+            bus_arrival = input("Bus Arrival Time: ")
+            bus_departure = input("Enter Bus departure time: ")
+            from_destination = input("Enter Bus start From: ")
+            bus_to = input("Enter Bus Destination: ")
+            new_bus = Bus(bus_no, bus_driver, bus_arrival, bus_departure, from_destination, bus_to)
+            self.total_bus_list.append(new_bus)
+            print("\nBus Added Successfully")
+
+company=Phitron()
+company.add_bus()
             
         
         
