@@ -3,14 +3,14 @@
 #admin
 # 1.Add a new bus 
 
-# 2.Check Avaible buses
+# 2.Check Available buses
 
 # 3.Can check bus info
 
 #user
-# 1. check avaible buses
+# 1. check available buses
 # 2. can check bus info
-# 3. can reverse seat
+# 3. can reserve seat
 class User:
     def __init__(self, username, password):
         self.username = username
@@ -176,7 +176,7 @@ while True:
                     company.available_buses()
                 elif a == 3:
                     company.show_ticket()
-# ... (previous code)
+
 
 while True:
     print("1. Create an account\n2. Login to your account\n3. EXIT")
@@ -205,8 +205,8 @@ while True:
                     break
             if flag:
                 while True:
-                    print(f"\n{' ' * 10} Welcome to BUS TICKET BOOKING SYSTEM")
-                    print("1. Available Buses\n2. Show Bus Info\n3. Reservation\n4. EXIT")
+                    print(f"\n{' ' * 10} Welcome  to BUS TICKET BOOKING SYSTEM")
+                    print("1. Available Buses\n2. Show Bus Info\n3. EXIT")
 
                     a = int(input("Enter Your Choice: "))
                     if a == 4:
