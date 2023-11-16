@@ -1,6 +1,4 @@
 # Bus_Ticket_booking_system
- python oop base project
-# bus-ticket-booking-python-oop
 A simple bus ticket booking system using python oop
 
 An admin can
